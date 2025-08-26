@@ -1,10 +1,12 @@
+Contact: tushyent2410053@ssn.edu.in , 9840611793
+for any queries
+
 # 🚀 TUF - Take U Forward
 
 **Empowering Freshmen Through Seniors-Led Digital Support**
 
 > A comprehensive digital platform designed to enhance campus life at SSN College by centralizing mentorship, academic resources, and opportunities.
 
-![TUF Banner](https://via.placeholder.com/800x200/4F46E5/FFFFFF?text=TUF+-+Take+U+Forward)
 
 ## 📋 Table of Contents
 - [Problem Statement](#problem-statement)
