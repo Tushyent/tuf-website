@@ -1,0 +1,356 @@
+TUF — Take U Forward
+Theme: Enhancing Campus Life @ SSN (solo 4-hour hackathon MVP)
+1) Final build choice (for a fast, judge-friendly prototype)
+
+Platform: Web (mobile-first, looks like an app on phone; demos cleanly on projector).
+
+Why web (not mobile app): Faster to scaffold, zero store friction, easy sharing, instant deploy, solid UI kits.
+
+2) Global UX structure (sidebar + pages)
+
+Left hamburger (☰) opens a fixed sidebar with these items (exactly as you listed):
+
+Dashboard
+
+Events Calendar
+
+Clubs in SSN
+
+Events of SSN
+
+Resources
+
+Notes (dropdown: Dept → Sem → Course)
+
+GATE Resources (dropdown: core topics)
+
+Projects (IFP)
+
+Discussions
+
+Where to Learn
+
+Chat with Seniors
+
+NPTEL / Online Courses
+
+Placement Tips
+
+Campus to Career (C2C) Toolkit
+
+Easy Access to Links
+
+My Profile
+
+Top bar: TUF logo, page title, global search (optional), user avatar menu.
+
+3) Auth & Onboarding
+Sign In
+
+Fields: Email, Password.
+
+Action: “Sign In”, “Forgot password?” (optional link).
+
+Sign Up (Create Account)
+
+Fields (exact, as you requested):
+
+Name
+
+SSN Mail (institution email)
+
+Password
+
+Year (dropdown)
+
+Program (dropdown: BE/BTech, ME/MTech)
+
+Department (dropdown; e.g., CSE, ECE, EEE, IT, Mechanical, Civil, Chemical, BME — customizable)
+
+Short intro (tech interests + extra/co-curricular)
+
+Validation: Prefer @ssn email (soft-gate in MVP, strict in prod).
+
+Profile creation: Store in profiles table on first login.
+-make it like it stores my data like email, name and password somewhere
+
+4) Page-by-page detailed spec (MVP + Nice-to-have)
+4.1 Dashboard (Home)
+
+Purpose: One-glance orientation + fastest paths.
+
+Hero: “Welcome, {Name}” + brief subtitle (“Start with Seniors → Notes → C2C”).
+
+Cards (top 4):
+
+Upcoming Events (next 2; “Add to Calendar” CTA)
+
+Latest Notes (2 newest by your Dept/Sem)
+
+Featured Mentor (1 senior aligned to your Dept interests)
+
+C2C Highlight (e.g., “Resume template” or “Internship board”)
+
+Impact chip: “Pages saved from printing: {count}”
+
+Quick links row: Seniors, Notes, Events, C2C, Easy Links.
+
+Nice-to-have: “Recently viewed”, install PWA prompt.
+
+4.2 Events Calendar
+
+Goal: “Events happening in few days” — clear, time-boxed glance.
+
+Default view: List grouped by date (next 7–14 days).
+
+Card fields: Title, Organiser (IEEE/ACM/Dept/Club), date & time, location, link.
+
+CTAs:
+
+Add to Google Calendar (prebuilt URL)
+
+“View organiser page” (opens Instagram/website)
+
+Filters: Tag chips (IEEE / ACM / Dept / Club), search box.
+
+Nice-to-have: Month view toggle, ICS export.
+
+4.3 Clubs in SSN
+
+Grid of club cards with: name, short tagline, meeting day/time (optional), Instagram and Email buttons.
+
+Seeded examples (from your list):
+
+TechClub SSN, BuildClub SSN, SSN Coding Club, SSN Lakshya, Saaral Tamil Mandram, SSN Photo Club, SSN Gradient Club, …
+
+Nice-to-have: Filter by type (Technical, Cultural, Departmental).
+
+4.4 Events of SSN
+
+Design: Two dropdowns + one for Dept clubs:
+
+IEEE Societies (dropdown): IEEE Photonics Society, SSN IEEE PELS, SSN IEEE PES, SSN IEEE WIE, …
+
+ACM Societies (dropdown): SSN ACM, SSN ACM-W
+
+Department Clubs (dropdown): AIT, ACE (Computer), ABE, AME, ACE (Civil), ACE (Chemical), …
+
+Behavior: Selecting a dropdown item shows event cards sourced from that group (or links to their Instagram page if you’re time-boxing).
+
+MVP: Link directly to their Instagram/event feed + 1–2 seeded events per group.
+
+Nice-to-have: Unified feed that aggregates selected groups.
+
+4.5 Resources → Notes
+
+Navigation: Dept (dropdown) → Semester (dropdown) → Course (dropdown).
+
+List item: Title, course code, file size, uploaded by (optional), Open PDF.
+
+Domains/topics (from your examples): DSA, OS, OOP, DSP, Electrical Machines, Engineering Graphics, etc.
+
+Impact: Each opened note increments a local “pages saved” metric (pages column).
+
+Nice-to-have: Upload form (role: senior/admin), star/favorite, download count.
+
+4.6 Resources → GATE Resources
+
+Two levels:
+
+Dropdown: “GATE – CS / EC / EE …” (or just CS for MVP)
+
+Topic groups: DSA, OS, DBMS, CN, TOC, COA, Discrete Math; for non-CS, DSP/Signals, EM, etc.
+
+Inside each topic: 3–6 high-quality links (GFG, Gate Smashers, TUF DSA, FreeCodeCamp, Jenny’s Lectures, etc.).
+
+Nice-to-have: Minimal topic checklist or “mark as visited”.
+
+4.7 Projects (IFP)
+
+Goal: Showcase seniors’ Internally Funded Projects with areas of specialization.
+
+Card fields: Title, Dept, Area of specialization (e.g., Embedded IoT, NLP, CV, Power Systems), short abstract, Guide/mentor, contact (email/WhatsApp), year, optional project link/paper.
+
+Filters: Dept, Area tags.
+
+Nice-to-have: Proposal template download; “Talk to mentor” CTA.
+
+4.8 Discussions
+
+MVP: Simple “hub” with buttons to join active WhatsApp/Discord/Telegram channels by theme (Placements, Hackathons, Dept threads).
+
+Nice-to-have: Embedded lightweight thread list (later); or use a form that posts to a Google Sheet/Discord webhook.
+
+4.9 Where to Learn
+
+Curated sections (from your list):
+
+Programming & Web: W3Schools, FreeCodeCamp, TechWithTim, CodeWithMosh
+
+CS Core / GATE: GATE Smashers, Jenny’s Lectures, Physics Wallah, Unacademy
+
+DSA: Take U Forward (TUF)
+
+General CS: GeeksforGeeks (GFG)
+
+Card fields: Resource name, 1-line why/use-case, “Open” button.
+
+Nice-to-have: Tag filters; “Beginner / Intermediate / Advanced” labels.
+
+4.10 Chat with Seniors
+
+Filters: Category (Placements | Hackathons), Department (dropdown), Skills/Interests (chips: DSA, CP, ML, Cybersec, IoT, Web, App, etc.)
+
+Row/Card: Name, Dept & Year (e.g., CSE ’25), Areas of interest, social handles (LinkedIn/GitHub/Instagram), contact (mail + phone/WA if opted-in).
+
+CTAs:
+
+WhatsApp (prefilled):
+https://wa.me/<number>?text=${encodeURIComponent("Hi <Name>, I'm <YourName> (Year, Dept). I’d love quick guidance on <topic>. Can we chat? – via TUF")}
+
+Email (mailto:) with subject preset (“Mentorship request via TUF”).
+
+Note: Respect opt-in to show phone/socials (profile toggle).
+
+Nice-to-have: Basic request ticket (status: open/accepted/closed).
+
+4.11 NPTEL / Online Courses
+
+Sections:
+
+Current/Upcoming NPTEL courses (seed a few with deadlines)
+
+Coursera/edX/Free platforms (curated pick with “Why this?” blurb)
+
+CTAs: Enroll/Visit course; “Add deadline to Calendar”.
+
+Nice-to-have: Credit transfer info (link), reminders.
+
+4.12 Placement Tips
+
+Buckets:
+
+Interview prep: DSA sheets, system design primers (for later), HR Qs
+
+Resume: templates (Google Docs/Canva), examples
+
+Platforms: LeetCode/Codeforces playlists
+
+Seniors’ advice: 3–5 concise bullets curated from seniors
+
+Nice-to-have: Simple checklist; upload your resume (Storage) — later.
+
+4.13 Campus to Career (C2C) Toolkit
+
+Sections:
+
+Internship updates (3–5 seeded items)
+
+Vacancies (seeded cards; role, company, apply link, deadline)
+
+Recommendations (resources, playlists, project ideas)
+
+C2C events (info sessions, resume reviews)
+
+Nice-to-have: Resume checker (future AI), application tracker.
+
+4.14 Easy Access to Links
+
+Groups:
+
+SSN Official: website, LinkedIn, YouTube, Instagram, Facebook
+
+Flagship: SSN Instincts, Invente pages
+
+Alumni: SSN AA (Alumni Association)
+
+Clubs: all IEEE/ACM/Dept clubs’ Instagram pages
+
+UI: Searchable link pills, grouped; copy icon.
+
+4.15 My Profile
+
+Editable fields: Name, Year, Program, Department, Intro, Skills (chips), Socials (LinkedIn/GitHub/Instagram), Phone (for WA), Avatar.
+
+Privacy toggles: “Show phone to juniors”, “Show Instagram”.
+
+Role badge: Student / Senior / Admin (admin-set).
+
+Nice-to-have: Public profile link (later).
+
+5) Data model (give me the easiet way to implement this.)
+
+profiles
+id (uuid, pk) | name | email | year int | program text | dept text | intro text | skills text[] | phone text | role text ('student'|'senior'|'admin') | socials jsonb {linkedin, github, instagram} | avatar_url text | created_at
+
+mentors
+id (uuid, pk -> profiles.id) | interests text[] | availability text | contact_whatsapp text | contact_email text
+
+notes
+id | dept text | semester int | course_code text | title text | file_url text | pages int | uploaded_by (uuid -> profiles.id) | created_at
+
+events
+id | title text | org text | date timestamptz | location text | link text | tags text[] | created_by (uuid -> profiles.id)
+
+clubs
+id | name text | category text ('IEEE'|'ACM'|'Dept'|'Cultural') | instagram text | email text | meeting_time text | description text
+
+opportunities
+id | type text ('IFP'|'Internship'|'NPTEL'|'Hackathon'|'Cert') | title text | deadline date | link text | contact text | tags text[]
+
+projects_ifp
+id | title text | dept text | area text | brief text | guide_name text | contact text | year int | link text
+
+links
+id | label text | url text | group text ('SSN'|'IEEE'|'ACM'|'Dept'|'Alumni'|'Social'|'Flagship')
+
+discussions_channels (optional for MVP if you list external rooms)
+id | label text | platform text ('WhatsApp'|'Discord'|'Telegram') | url text | topic_tags text[]
+
+RLS (simple):
+
+Read: all authenticated users.
+
+Write:
+
+notes: seniors/admin
+
+events, opportunities, clubs, links: admin
+
+profiles: user can update own row.
+
+6) Tech details that save time
+
+WhatsApp CTA:
+https://wa.me/<number>?text=${encodeURIComponent("Hi <MentorName>, I'm <YourName> (Y<year>, <dept>). I’d love guidance on <topic>. – TUF")}
+
+Email CTA:
+mailto:<email>?subject=${encodeURIComponent("Mentorship request via TUF")}&body=${encodeURIComponent(<same message>)}
+
+Google Calendar URL:
+https://calendar.google.com/calendar/render?action=TEMPLATE&text=<Title>&dates=<YYYYMMDDTHHMMSSZ>/<YYYYMMDDTHHMMSSZ>&details=<Desc>&location=<Loc>
+
+Sidebar: shadcn/ui Sheet for mobile, fixed aside for desktop.
+
+Components to use from shadcn: Card, Badge, Button, Input, Select, Tabs, Avatar, Toast, Skeleton, Sheet, Dialog.
+
+
+) Seeding (make it look alive)
+
+Mentors (8–12): diverse depts + interests; include WA number (opt-in) + LinkedIn.
+
+Notes (10–15 PDFs): per Dept/Sem/Course; include pages count.
+
+Events (6–10): A mix across IEEE/ACM/Dept/Clubs with near-future dates.
+
+Clubs (10–12): all from your list with Instagram links.
+
+Opportunities (6–8): NPTEL deadlines, 2 internships, 1 hackathon, 1 certification.
+
+Projects IFP (4–6): title, area, brief, guide, contact.
+
+Links: SSN site, Invente, Instincts, Alumni, socials, all club IG pages.
+
+
+
+Thus make it 
