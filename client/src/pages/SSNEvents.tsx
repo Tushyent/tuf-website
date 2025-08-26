@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { isUnauthorizedError } from "@/lib/authUtils";
@@ -45,6 +46,93 @@ const societyGroups = [
       "EEE Association",
       "ECE Association"
     ]
+  }
+];
+
+const clubsData = [
+  {
+    name: "IEEE Photonics Society",
+    type: "IEEE",
+    description: "Advancing photonics and optical technologies through research, workshops, and industry connections.",
+    members: "120+",
+    founded: "2015"
+  },
+  {
+    name: "SSN IEEE PELS",
+    type: "IEEE",
+    description: "Power Electronics Society focusing on renewable energy systems and power conversion technologies.",
+    members: "85+",
+    founded: "2017"
+  },
+  {
+    name: "SSN IEEE PES",
+    type: "IEEE",
+    description: "Power & Energy Society promoting sustainable energy solutions and smart grid technologies.",
+    members: "95+",
+    founded: "2016"
+  },
+  {
+    name: "SSN IEEE WIE",
+    type: "IEEE",
+    description: "Women in Engineering chapter empowering female engineers through mentorship and technical programs.",
+    members: "150+",
+    founded: "2014"
+  },
+  {
+    name: "SSN IEEE Computer Society",
+    type: "IEEE",
+    description: "Leading computer science innovations with coding competitions, hackathons, and tech talks.",
+    members: "200+",
+    founded: "2012"
+  },
+  {
+    name: "SSN ACM",
+    type: "ACM",
+    description: "Premier computing society organizing programming contests, workshops, and career development sessions.",
+    members: "180+",
+    founded: "2013"
+  },
+  {
+    name: "SSN ACM-W",
+    type: "ACM",
+    description: "Supporting women in computing through networking events, technical workshops, and leadership programs.",
+    members: "110+",
+    founded: "2018"
+  },
+  {
+    name: "AIT (CSE Association)",
+    type: "Department",
+    description: "Computer Science Association fostering innovation through project showcases and industry interactions.",
+    members: "300+",
+    founded: "2010"
+  },
+  {
+    name: "ACE Computer",
+    type: "Department",
+    description: "Computing Excellence club focusing on emerging technologies like AI, ML, and blockchain.",
+    members: "250+",
+    founded: "2011"
+  },
+  {
+    name: "ABE (Biomedical)",
+    type: "Department",
+    description: "Biomedical Engineering Association bridging healthcare technology and engineering solutions.",
+    members: "80+",
+    founded: "2019"
+  },
+  {
+    name: "AME (Mechanical)",
+    type: "Department",
+    description: "Mechanical Engineering society promoting robotics, manufacturing, and automotive technologies.",
+    members: "160+",
+    founded: "2009"
+  },
+  {
+    name: "EEE Association",
+    type: "Department",
+    description: "Electrical and Electronics Engineering club specializing in circuits, embedded systems, and IoT.",
+    members: "140+",
+    founded: "2008"
   }
 ];
 
@@ -125,6 +213,18 @@ export default function SSNEvents() {
     return `https://instagram.com/${handle}`;
   };
 
+  const getFilteredClubs = () => {
+    if (!selectedGroup) return clubsData;
+
+    const typeMap = {
+      ieee: "IEEE",
+      acm: "ACM", 
+      dept: "Department"
+    };
+
+    return clubsData.filter(club => club.type === typeMap[selectedGroup]);
+  };
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -175,6 +275,55 @@ export default function SSNEvents() {
         </CardContent>
       </Card>
 
+      {/* Clubs and Societies Information Table */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold text-foreground">
+            {selectedGroup ? 
+              `${societyGroups.find(g => g.id === selectedGroup)?.label} Overview` : 
+              "Clubs and Societies Overview"
+            }
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Type</TableHead>
+                  <TableHead>Description</TableHead>
+                  <TableHead>Members</TableHead>
+                  <TableHead>Founded</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {getFilteredClubs().map((club, index) => (
+                  <TableRow key={index}>
+                    <TableCell className="font-medium">{club.name}</TableCell>
+                    <TableCell>
+                      <Badge variant={
+                        club.type === 'IEEE' ? 'default' :
+                        club.type === 'ACM' ? 'secondary' : 'outline'
+                      }>
+                        {club.type}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="max-w-xs">
+                      <p className="text-sm text-muted-foreground line-clamp-2">
+                        {club.description}
+                      </p>
+                    </TableCell>
+                    <TableCell>{club.members}</TableCell>
+                    <TableCell>{club.founded}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Events Display */}
       {selectedSociety ? (
         <div className="space-y-4">
@@ -217,7 +366,7 @@ export default function SSNEvents() {
                         {selectedGroup.toUpperCase()}
                       </Badge>
                     </div>
-                    
+
                     <div className="space-y-2 text-sm text-muted-foreground mb-4">
                       <div className="flex items-center space-x-2">
                         <i className="fas fa-clock w-4"></i>
@@ -237,7 +386,7 @@ export default function SSNEvents() {
                         </div>
                       )}
                     </div>
-                    
+
                     <div className="flex space-x-2">
                       <Button size="sm" className="flex-1" data-testid={`button-register-${event.id}`}>
                         <i className="fas fa-user-plus mr-2"></i>

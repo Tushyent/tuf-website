@@ -10,7 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { isUnauthorizedError } from "@/lib/authUtils";
 
 const departments = [
-  { value: "", label: "All Departments" },
+  { value: "all", label: "All Departments" },
   { value: "Computer Science Engineering", label: "Computer Science" },
   { value: "Information Technology", label: "Information Technology" },
   { value: "Electronics & Communication", label: "Electronics & Communication" },
@@ -22,7 +22,7 @@ const departments = [
 ];
 
 const specializationAreas = [
-  { value: "", label: "All Specializations" },
+  { value: "all", label: "All Specializations" },
   { value: "Embedded IoT", label: "Embedded IoT" },
   { value: "NLP", label: "Natural Language Processing" },
   { value: "Computer Vision", label: "Computer Vision" },
@@ -38,8 +38,8 @@ const specializationAreas = [
 export default function Projects() {
   const { isLoading: authLoading, isAuthenticated } = useAuth();
   const { toast } = useToast();
-  const [selectedDept, setSelectedDept] = useState("");
-  const [selectedArea, setSelectedArea] = useState("");
+  const [selectedDept, setSelectedDept] = useState("all");
+  const [selectedArea, setSelectedArea] = useState("all");
 
   // Redirect to login if not authenticated
   useEffect(() => {
@@ -58,8 +58,8 @@ export default function Projects() {
 
   const { data: projects = [], isLoading: projectsLoading, error } = useQuery({
     queryKey: ["/api/projects-ifp", { 
-      dept: selectedDept || undefined,
-      area: selectedArea || undefined,
+      dept: selectedDept === "all" ? undefined : selectedDept,
+      area: selectedArea === "all" ? undefined : selectedArea,
     }],
     enabled: isAuthenticated,
   });
@@ -186,11 +186,11 @@ export default function Projects() {
                         {project.area}
                       </Badge>
                     </div>
-                    
+
                     <p className="text-muted-foreground mb-4 leading-relaxed">
                       {project.brief}
                     </p>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                       <div>
                         <h4 className="font-medium text-foreground mb-2">Project Guide</h4>
@@ -208,7 +208,7 @@ export default function Projects() {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="flex flex-col space-y-2 lg:min-w-[200px]">
                     <Button 
                       onClick={() => window.location.href = generateContactUrl(project)}
@@ -217,7 +217,7 @@ export default function Projects() {
                       <i className={`${project.contact.includes('@') ? 'fas fa-envelope' : 'fab fa-whatsapp'} mr-2`}></i>
                       Talk to Mentor
                     </Button>
-                    
+
                     {project.link && (
                       <Button 
                         variant="outline"
@@ -228,7 +228,7 @@ export default function Projects() {
                         Project Link
                       </Button>
                     )}
-                    
+
                     <Button 
                       variant="outline"
                       data-testid={`button-proposal-template-${project.id}`}
@@ -248,7 +248,7 @@ export default function Projects() {
             <i className="fas fa-project-diagram text-4xl text-muted-foreground mb-4"></i>
             <h3 className="text-lg font-medium text-foreground mb-2">No Projects Found</h3>
             <p className="text-muted-foreground text-center">
-              {selectedDept || selectedArea
+              {selectedDept !== "all" || selectedArea !== "all"
                 ? "Try adjusting your filters to find relevant projects."
                 : "No IFP projects have been registered yet."
               }

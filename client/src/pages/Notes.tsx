@@ -11,7 +11,6 @@ import { isUnauthorizedError } from "@/lib/authUtils";
 import { apiRequest } from "@/lib/queryClient";
 
 const departments = [
-  { value: "", label: "Select Department" },
   { value: "cse", label: "Computer Science Engineering" },
   { value: "it", label: "Information Technology" },
   { value: "ece", label: "Electronics & Communication" },
@@ -66,7 +65,7 @@ export default function Notes() {
   const { user, isLoading: authLoading, isAuthenticated } = useAuth();
   const { toast } = useToast();
   const queryClient = useQueryClient();
-  
+
   const [selectedDept, setSelectedDept] = useState("");
   const [selectedSemester, setSelectedSemester] = useState<number | "">("");
   const [selectedCourse, setSelectedCourse] = useState("");
@@ -173,6 +172,10 @@ export default function Notes() {
     window.open(note.fileUrl, '_blank');
   };
 
+  const handleCSEStudyMaterialsClick = () => {
+    window.open("https://drive.google.com/drive/folders/0AC_MCl6-U9jFUk9PVA", '_blank');
+  };
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -180,6 +183,53 @@ export default function Notes() {
         <h2 className="text-2xl font-bold text-foreground mb-2">Notes & Study Materials</h2>
         <p className="text-muted-foreground">Access course materials organized by department, semester, and subject</p>
       </div>
+
+      {/* CSE Study Materials Highlight Box */}
+      <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 border-blue-200 dark:border-blue-800">
+        <CardContent className="p-6">
+          <div className="flex items-start space-x-4">
+            <div className="w-16 h-16 bg-blue-600 dark:bg-blue-500 rounded-xl flex items-center justify-center flex-shrink-0">
+              <i className="fas fa-graduation-cap text-white text-2xl"></i>
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center space-x-2 mb-2">
+                <h3 className="text-xl font-bold text-blue-900 dark:text-blue-100">CSE Study Materials</h3>
+                <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs font-semibold rounded-full">
+                  Premium Collection
+                </span>
+              </div>
+              <p className="text-blue-700 dark:text-blue-300 mb-4 leading-relaxed">
+                Access our comprehensive collection of Computer Science Engineering study materials. 
+                Find textbooks, reference materials, previous year papers, lab manuals, and curated 
+                resources for all semesters - all organized in one convenient Google Drive folder.
+              </p>
+              <div className="flex items-center space-x-6 text-sm text-blue-600 dark:text-blue-400 mb-4">
+                <div className="flex items-center space-x-2">
+                  <i className="fas fa-book"></i>
+                  <span>Textbooks & References</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <i className="fas fa-file-alt"></i>
+                  <span>Previous Year Papers</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <i className="fas fa-flask"></i>
+                  <span>Lab Manuals</span>
+                </div>
+              </div>
+              <Button 
+                onClick={handleCSEStudyMaterialsClick}
+                className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white shadow-lg hover:shadow-xl transition-all duration-200"
+                data-testid="button-cse-study-materials"
+              >
+                <i className="fab fa-google-drive mr-2"></i>
+                Access CSE Study Materials
+                <i className="fas fa-external-link-alt ml-2 text-sm"></i>
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Navigation Dropdowns */}
       <Card>
@@ -189,7 +239,7 @@ export default function Notes() {
               <label className="block text-sm font-medium text-foreground mb-2">Department</label>
               <Select value={selectedDept} onValueChange={handleDeptChange}>
                 <SelectTrigger data-testid="select-department">
-                  <SelectValue />
+                  <SelectValue placeholder="Select Department" />
                 </SelectTrigger>
                 <SelectContent>
                   {departments.map((dept) => (
