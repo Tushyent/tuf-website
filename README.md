@@ -186,8 +186,8 @@ TUF/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/tuf-take-u-forward.git
-   cd tuf-take-u-forward
+   git clone https://github.com/Tushyent/tuf-website.git
+   cd tuf-website
    ```
 
 2. **Install dependencies**
@@ -318,8 +318,8 @@ We welcome contributions from the SSN community!
 
 **Project Maintainer:** [Tushyent N P]
 - **Email:** [tushyent2410053@ssn.edu.in]
-- **LinkedIn:** [Tushyent N P]
-- **GitHub:** [Tushyent]
+- **LinkedIn:** [Tushyent N P](https://www.linkedin.com/in/tushyent-n-p/)
+- **GitHub:** [Tushyent](https://github.com/Tushyent)
 
 **For SSN-specific queries:**
 - **Campus Support:** Contact through official SSN channels
