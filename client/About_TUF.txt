@@ -1,0 +1,37 @@
+Problem Statement 
+Theme: Enhancing Campus Life — create practical, innovative software prototypes that benefit SSN students.
+
+Title: Take U Forward (TUF)
+Empowering Freshmen Through Seniors-Led Digital Support
+
+Problem Statement:
+Freshmen entering SSN face confusion and disconnection despite abundant campus resources. Mentorship remains informal, academic materials are scattered across multiple drives and chats, and vital opportunities such as IFPs, NPTEL, internships, and hackathons are poorly communicated. This leads to wasted time, missed opportunities, unequal access to guidance, and repeated paper printing that is environmentally unsustainable.
+
+Currently, there is no unified, trusted digital platform that integrates mentorship, academic repositories, and campus opportunity aggregation to provide a structured, inclusive, and sustainable onboarding experience for SSN students.
+
+
+Our Solution:
+We propose Take U Forward (TUF) — a website into a scalable software platform designed to enhance campus life by centralizing mentorship, academic resources, and opportunities.
+
+Key Features:
+*Senior Mentorship Hub: Matches juniors with seniors based on department, skills, and career goals, enabling structured peer guidance.
+*Academic Notes Repository: Organized department- and semester-wise notes, past question papers, and lab manuals to save time and reduce printing.
+*Events & Clubs Central: Real-time, searchable calendar for all department, society, and club activities.
+*Opportunities Hub: Aggregates IFPs, internships, certifications, and competitions with deadlines, instructions, and mentor contacts.
+*Campus-to-Career Toolkit: Resume templates, project trackers, and curated resources guiding students from day one toward placements, internships, or higher studies.
+
+
+Scalability & Technology:
+-Tech Stack: Flutter (cross-platform frontend) + Firebase (backend, authentication, storage).
+-Authentication: Institution-based login (SSN email SSO) for trust and security.
+-Scalability: Can be extended to other colleges and universities through modular deployment.
+
+
+Expected Impact
+-For Students: Faster onboarding, equal access to mentorship, better awareness of opportunities, and reduced confusion.
+-For Institutions: Improved student engagement, reduced repetitive printing and queries, better visibility of opportunities.-
+-For Sustainability: Paperless, digital-first culture leading to measurable reduction in resource waste.
+
+
+Outcome:
+TUF will empower every freshman with equitable access to guidance, structured academic resources, and sustainable learning practices — truly enhancing campus life at SSN and beyond
